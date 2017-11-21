@@ -1,0 +1,41 @@
+package algorithm.search;
+/*最大子数组和
+ * 作者：夜苍山
+ */
+public class MaxSubSum {
+	private int[] A;
+	private int maxsum;
+	private int left;
+	private int right;
+	
+	public MaxSubSum(int[] A) {
+		this.A=A;
+	}
+	public int maxSubSum() {
+		int sum=0;//临时的子数组和
+		int begin=0;//当前子数组的开始下标
+		for(int i=0;i<A.length;i++) {//遍历数组
+			if(sum>0) {//当和大于0时
+				sum+=A[i];//继续与下一个元素相加
+			}else {//当和小于0时
+				sum=A[i];//从当前元素重新开始计算
+				begin=i;//标记此子数组的开始下标
+			}
+			if(sum>maxsum) {//如果相加到第i个元素的和大于历史最大和
+				maxsum=sum;//将现在的最大和作为问题求解至今的最大和
+				left=begin;//标记最大子数组的左边界下标
+				right=i;//记录最大子数组的右边界下标
+			}
+		}
+		return maxsum;//返回整个数组的最大子数组和
+	}
+	
+	public static void main(String[] args) {
+		int[] A= {2,-4,1,2,5,10,3,1,-2};
+		MaxSubSum d=new MaxSubSum(A);
+		int max=d.maxSubSum();
+		System.out.println(max);
+		for(int i=d.left;i<=d.right;i++)
+			System.out.print（A[i]+" ");
+	} 
+}

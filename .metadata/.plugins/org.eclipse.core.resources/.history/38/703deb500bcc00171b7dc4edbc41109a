@@ -1,0 +1,64 @@
+package datastruct;
+/*双向链表
+ * 作者：夜苍山
+ */
+public class LinkList {
+	private Node head;
+	private Node tail;
+	
+	public Node search(int key) {//搜索方法，返回搜索到到结点
+		Node x=head;//从表头开始搜索
+		while(x!=null && x.key!=key) {//如果检索到的结点不为空且结点关键字与搜索关键字不一样
+			x=x.next;//继续向后搜索下一个结点
+		}
+		return x; //返回搜索结果
+	}
+	
+	public void tailinsert(int key) {//插入链表尾方法
+		Node node=new Node(key);
+		if(head==null) {//如果链表头为空，说明此时插入的结点为表头
+			head=node;//表头指向插入结点
+			tail=node;//表尾指向插入结点			
+		}else {//如果链表头不为空，向链表尾插入一个结点
+			tail.next=node;//尾结点的下一个结点为插入的结点
+			node.pre=tail;//尾结点的上一个结点为原来的尾结点
+			tail=node;//尾指针指向新插入的结点
+		}
+	}
+	
+	public void delete(int key) {//删除任意结点的方法
+		Node n=search(key);
+		if(n.pre!=null)//如果删除结点的上一个结点不为空，说明此结点不是表头结点
+			n.pre.next=n.next;//删除结点的上一个结点的下一个结点为删除结点的下一个结点
+		else head=n.next;//如果删除结点为空，说明此结点是表头结点，将表头指针指向删除结点的下一个结点
+		if(n.next!=null)//如果删除结点的下一个结点不为空，说明此结点不是表尾结点
+			n.next.pre=n.pre;//删除结点的下一个结点的上一个结点为删除结点的上一个结点
+	}
+	
+	public void headDisplay() {//从表头开始向后显示链表
+		Node current=head;
+		while(current!=null) {
+			current.display();
+			current=current.next;
+		}
+	}
+	public void tailDisplay() {//从表尾开始向前显示链表
+		Node current=tail;
+		while(current!=null) {
+			current.display();
+			current=current.pre;
+		}
+	}
+	public static void main(String[] args) {
+		LinkList links=new LinkList();
+		links.tailinsert(3);
+		links.tailinsert(5);
+		links.tailinsert(2);
+		links.tailinsert(8);
+		links.tailinsert(7);
+		System.out.print("headdisplay:");
+		links.headDisplay();
+		System.out.print("\n" +"tailDisplay:");
+		links.tailDisplay();
+	}
+}

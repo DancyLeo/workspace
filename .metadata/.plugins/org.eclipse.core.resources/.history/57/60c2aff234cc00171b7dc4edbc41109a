@@ -1,0 +1,39 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.function.Consumer;
+
+public class demo {
+	public static void main(String[] args) {
+		List<?> l=new ArrayList();
+		Queue<Integer> q=new ArrayBlockingQueue<Integer>(4);
+		q.add(3);
+		q.add(6);
+		q.add(9);
+		q.add(12);
+		for(int i=0;i<5;i++)
+			System.out.print(","+q.remove());
+			/*
+		System.out.print(","+q.poll());
+		
+		/*
+		q.poll();
+		q.poll();
+		q.poll();
+		/*
+		q.remove();
+		q.remove();
+		q.remove();
+		q.remove();
+		//q.add(15);
+		/*
+		int a = q.size();
+		//Iterator it=q.iterator();
+		for(int i=0;i<q.size();i++)
+			//System.out.print(q.remove());
+			System.out.print(q.poll());
+			*/
+	}
+}

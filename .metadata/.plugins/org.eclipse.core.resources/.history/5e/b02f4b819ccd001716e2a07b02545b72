@@ -1,0 +1,11 @@
+package webtest.selenium;
+
+public class Partten {
+	public static void main(String[] args) {
+		String txt="javakkkkkkkJavahhhhhhjavakkkkl";
+		String p="java";
+		if(txt.matches(p)) {
+			System.out.println("success!");
+		}else System.out.println("fail!");
+	}
+}

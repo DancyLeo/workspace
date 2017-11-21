@@ -1,0 +1,43 @@
+package datastruct;
+
+public class stackdemo {
+	private int[] S;
+	private int top;
+	
+	public stackdemo(int capacity) {
+		this.S=new int[capacity];
+		this.top=-1;
+	}
+	
+	public boolean empty() {
+		if(top==-1)
+			return true;
+		else 
+			return false;
+	}
+	public String push(int data) {
+		if(top==S.length)
+			return "stack full";
+		else {
+			S[++top]=data;
+			return "success!";
+		}
+	}
+	public int pop() {
+		if(top==-1)
+			return -1;
+		return S[--top+1];
+	}
+	public static void main(String[] args) {
+		stackdemo s=new stackdemo(3);
+		
+		s.push(2);
+		s.push(4);
+		s.push(6);
+		s.push(8);
+		System.out.print(s.pop());
+		System.out.print(s.pop());
+		System.out.print(s.pop());
+		System.out.print(s.pop());
+	}
+}

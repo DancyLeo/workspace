@@ -1,0 +1,40 @@
+package demo;
+
+import java.util.List;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
+
+public class Browser {
+	
+	public static void main(String[] args) throws Exception {
+		
+		WebDriver driver=new ChromeDriver();
+		try {
+		driver.navigate().to("http://www.baidu.com");
+		driver.findElement(By.id("kw")).sendKeys("java");
+		driver.findElement(By.id("su")).click();
+		
+		Thread.sleep(2000);
+		List<WebElement> strlist=driver.findElements(By.partialLinkText("java"));
+		for(WebElement e:strlist)
+		System.out.println(e.getText());
+		
+		Thread.sleep(2000);
+		String handle = driver.getWindowHandle();
+		//driver.switchTo().window(handle);
+		Thread.sleep(2000);
+		System.out.println(driver.findElement(By.tagName("a")).getText());
+		
+		Thread.sleep(2000);
+		}
+		finally {
+		  driver.close();
+		}
+	}
+}

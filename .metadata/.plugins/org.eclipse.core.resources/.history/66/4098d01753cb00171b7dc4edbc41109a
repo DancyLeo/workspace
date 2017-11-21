@@ -1,0 +1,49 @@
+package datastruct;
+
+public class Links {
+	private Node head;
+	private Node tail;
+
+	public Links() {
+		this.head=null;
+		this.tail=null;
+	}
+	
+	public void insert(int data) {
+		Node node=new Node(data);
+		if(head==null) {
+			head=node;
+			head.pre=null;
+			tail=node;
+		}
+		tail.next=node;
+		node.next=null;
+		node.pre=tail;
+		tail=node;
+	}
+	
+	public void displayByhead() {
+		Node current=head;
+		while(current!=null) {
+			current.display();
+			current=current.next;
+		}
+	}
+	public void tailDisplay() {
+		Node current=tail;
+		while(current!=null) {
+			current.display();
+			current=current.pre;
+		}
+	}
+	
+	public static void main(String[] args) {
+		Links links=new Links();
+		links.insert(3);
+		links.insert(5);
+		links.insert(2);
+		links.displayByhead();
+		links.tailDisplay();
+		
+	}
+}

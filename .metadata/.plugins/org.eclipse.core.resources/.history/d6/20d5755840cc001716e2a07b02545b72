@@ -1,0 +1,21 @@
+package demo;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
+
+public class OpenFirefox {
+	public static void main(String[] args) throws Exception {
+		System.setProperty("webdriver.safari.driver", "/U	sers/leo/app/driver/safaridriver");
+		WebDriver driver=new SafariDriver();
+		/*
+		System.setProperty("webdriver.chrome.driver", "/Users/leo/app/driver/chromedriver");
+		WebDriver driver=new ChromeDriver();
+		/*System.setProperty("webdriver.gecko.driver", "/Users/leo/app/driver/geckodriver");
+		WebDriver driver=new FirefoxDriver();*/
+		driver.get("http://www.baidu.com");
+		Thread.sleep(2000);
+		driver.close();
+	}
+}

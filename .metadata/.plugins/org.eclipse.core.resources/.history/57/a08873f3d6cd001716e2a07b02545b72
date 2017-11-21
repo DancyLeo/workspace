@@ -1,0 +1,54 @@
+package algorithm.search;
+
+public class demo {
+	private int[] next;
+	private String txt;
+	private String partten;
+	
+	public demo(String txt,String partten) {
+		this.txt=txt;
+		this.partten=partten;
+		this.next=new int[partten.length()];
+	}
+	
+	
+	public int[] makeNext() {
+		char[] P=partten.toCharArray();
+		next[0]=0;
+		int k=0;
+		for(int q=1;q<partten.length();q++) {
+			while(k>0 && P[k]!=P[q]) {
+				k=next[k-1];
+			}
+			if(P[k]==P[q])
+				k++;
+			next[q]=k;
+		}
+		return next;
+	}
+	public void kmp() {
+		char[] T=txt.toCharArray();
+		char[] P=partten.toCharArray();
+		int k=0;
+		for(int q=0;q<T.length;q++) {
+			while(k>0 && P[k]!=T[q])
+				k=next[k-1];
+			if(P[k]==T[q]) {
+				k++;
+				if(k==partten.length())
+					System.out.println("success!"+(q-k));
+			}
+				
+		}
+	}
+	
+	public static void main(String[] args) {
+		String txt="abcdabacad";
+		String partten="abac";
+		demo d=new demo(txt,partten);
+		d.makeNext();
+		for(int i:d.next)
+			System.out.print(i+" ");
+	}
+	
+}

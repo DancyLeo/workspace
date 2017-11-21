@@ -1,0 +1,68 @@
+package datastruct;
+
+public class LinkList {
+	private Node head;
+	private Node tail;
+	
+	public Node search(int key) {//搜索方法，返回搜索到到结点
+		Node x=head;//从表头开始搜索
+		while(x!=null && x.key!=key) {//如果检索到的结点不为空且结点关键字与搜索关键字不一样
+			x=x.next;//继续向后搜索下一个结点
+		}
+		return x; //返回搜索结果
+	}
+	
+	public void insert(int data) {
+		Node node=new Node(data);
+		if(head==null) {
+			head=node;
+			tail=node;
+			
+		}else {
+			tail.next=node;
+			node.pre=tail;
+			tail=node;
+		}
+	}
+	
+	public void delete(int data) {
+		Node n=search(data);
+		if(n.pre!=null)
+			n.pre.next=n.next;
+		else head=n.next;
+		if(n.next!=null)
+			n.next.pre=n.pre;
+	}
+	
+	public void headDisplay() {
+		Node current=head;
+		while(current!=null) {
+			current.display();
+			current=current.next;
+		}
+	}
+	public void tailDisplay() {
+		Node current=tail;
+		while(current!=null) {
+			current.display();
+			current=current.pre;
+		}
+	}
+	public static void main(String[] args) {
+		LinkList links=new LinkList();
+		links.insert(3);
+		links.insert(5);
+		links.insert(2);
+		links.insert(8);
+		links.insert(7);
+		Node n=links.search(2);
+		System.out.println(n.pre.data+"," + n.data+","+n.next.data);
+		//links.delete(2);
+		
+		System.out.print("headdisplay:");
+		links.headDisplay();
+		//links.delete(2);
+		System.out.print("\n" +"tailDisplay:");
+		links.tailDisplay();
+	}
+}

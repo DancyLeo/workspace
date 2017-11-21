@@ -1,0 +1,36 @@
+package demo;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+/*
+ * 获取页面所有标签<a>
+ */
+public class Browser {
+	
+	public static void main(String[] args) throws Exception {
+		
+		WebDriver driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		try {
+		driver.navigate().to("http://www.baidu.com");
+		driver.findElement(By.id("kw")).sendKeys("java");
+		driver.findElement(By.id("su")).click();
+		Thread.sleep(1000);
+		List<WebElement> alist=driver.findElements(By.tagName("a"));
+		
+		for(WebElement e:alist) {
+			System.out.println(e.getText());
+		}
+		Thread.sleep(2000);
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		finally {
+		  driver.close();
+		}
+	}
+}

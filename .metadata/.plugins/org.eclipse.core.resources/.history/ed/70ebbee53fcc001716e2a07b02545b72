@@ -1,0 +1,11 @@
+package webtest.selenium;
+
+import java.util.Comparator;
+
+public class linkComparator1 implements Comparator {
+	public int compare(Object o1,Object o2) {
+		Links l1=(Links)o1;
+		Links l2=(Links)o2;
+		return new Integer(l1.getnum()).compareTo(l2.getnum());
+	}
+}

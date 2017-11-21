@@ -1,0 +1,45 @@
+package datastruct;
+
+
+public class Stack {
+	private int[] S;
+	private int top;
+	
+	public Stack() {
+		this.S=new int[100];
+		this.top=-1;
+	}
+	
+	public boolean empty() {
+		if(top==-1)
+			return true;
+		else return false;
+	}
+	
+	public void push(int key) {
+		top=top+1;
+		S[top]=key;
+	}
+	public int pop() {
+		if(empty()) {
+			return -1;
+		}else {
+		top=top-1;
+		}
+		return S[top+1];
+	}
+	
+	public static void main(String[] args) {
+		Stack s=new Stack();
+		s.push(2);
+		s.push(4);
+		s.push(6);
+		s.push(8);
+		System.out.print(s.pop());
+		System.out.print(s.pop());
+		System.out.print(s.pop());
+		System.out.print(s.pop());
+		System.out.print(s.pop());
+		System.out.print(s.pop());
+	}
+}

@@ -1,0 +1,38 @@
+package datastruct;
+
+public class Queue {
+	private int[] Q;
+	private int head;
+	private int tail;
+	public Queue() {
+		this.Q=new int[5];
+		this.head=0;
+		this.tail=0;
+	}
+	public void enQueue(int key) {
+		if(head==tail%10+1)
+			System.out.println("upflow");
+		else {
+			Q[tail]=key;
+			if(tail==Q.length)
+				tail=0;
+			else {
+				tail=tail+1;
+			}
+		}
+	}
+	public static void main(String[] args) {
+		Queue q=new Queue();
+		q.enQueue(3);
+		q.enQueue(13);
+		q.enQueue(23);
+		q.enQueue(33);
+		q.enQueue(43);
+		q.enQueue(53);
+		
+		/*
+		for(int i=1;i<10;i++)
+			q.enQueue(i);
+			*/
+	}
+}

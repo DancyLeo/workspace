@@ -1,0 +1,35 @@
+package datastruct;
+
+public class Link {
+	private int key;
+	private int pre=key-1;
+	private int next=key+1;
+	
+	public Link(int key) {
+		this.key=key;
+	}
+	public int getKey() {
+		return key;
+	}
+
+	public void setKey(int key) {
+		
+	}
+	
+	public int getPre() {
+		return pre;
+	}
+
+	public void setPre(int pre) {
+		this.pre = pre;
+	}
+
+	public int getNext() {
+		return next;
+	}
+
+	public void setNext(int next) {
+		this.next = next;
+	}
+	
+}

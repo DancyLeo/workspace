@@ -1,0 +1,43 @@
+package datastruct;
+/*循环队列
+ * 作者：夜苍山
+ */
+public class queuedemo{
+	protected int head;
+	protected int tail;
+	protected int itemCount;
+	protected int[] Q;
+	
+	public queuedemo(int capacity) {
+		this.Q=new int[capacity];
+	}
+	public boolean enQueue(int data) {//入队方法
+		if(itemCount==Q.length) {//判断队列是否满
+			System.out.println("Queue is full!");
+			return false;
+		}
+		if(tail==Q.length) {//判断队尾指针是否移动到数组末尾
+			tail=0;//改变队尾指针使之从数组第一个元素重新开始
+		}
+		Q[tail++]=data;//如果队未满，元素入队，队尾指针向后加一
+		itemCount++;//队列元素加一
+		System.out.println("enqueue success");//提示入队成功
+		return true;
+	}
+	public int deQueue() {//出队方法
+		if(itemCount==0) {//判断队列是否为空
+			System.out.println("Queue is empty!");
+			return -1 ;
+		}
+		if(head==Q.length)//判断队首指针是否走到数组末尾
+			head=0;
+		System.out.println("deQueue success!");
+		itemCount--;//队列元素减一
+		return Q[head++];//返回队首元素，队首指针加一
+	}
+	public static void main(String[] args) {
+		queuedemo q=new queuedemo(3);
+		q.enQueue(3);
+		System.out.println(q.deQueue());
+	}
+}

@@ -1,0 +1,62 @@
+package algorithm.sort;
+
+public class BucketSort {
+	private int[] A;
+	
+	public BucketSort(int[] A) {
+		this.A=A;
+	}
+	
+	public void bucketSort() {
+		int n=A.length;
+		BucketLink[] B=new BucketLink[n];
+		for(int i=0;i<n;i++) {
+			if(A[i]==i) {
+				Node node=new Node(A[i]);
+				B[i].addTail(node);
+			}
+		}
+		for(int i=0;i<n;i++) {
+			A[i]=B[i].element().data;
+		}
+	}
+	public static void main(String[] args) {
+		int[] A= {2,4,6,1,3,5};
+		BucketLink bl=new BucketLink();
+		for(int i=0;i<A.length;i++) {
+			Node node=new Node(A[i]);
+			bl.addTail(node);
+		}
+		System.out.println(bl.element().data);
+	}
+}
+
+class BucketLink{
+	private Node head;
+	private Node tail;
+	public void addTail(Node node) {
+		if(head==null) {
+			head=node;
+			tail=node;
+		}else {
+			tail.next=node;
+			node.pre=tail;
+			tail=node;
+		}		
+	}
+	public Node element(){
+		Node current=head;
+		while(current!=null)
+			return current;
+		return current;
+	}
+}
+
+class Node{
+	protected int data;
+	protected Node pre;
+	protected Node next;
+	public Node(int data) {
+		this.data=data;
+	}
+}

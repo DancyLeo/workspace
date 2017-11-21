@@ -1,0 +1,51 @@
+package other;
+
+import algorithm.sort.HeapSort;
+
+public class heapsort {
+	private int[] A;
+	private int heapsize;
+	public heapsort(int[] A) {
+		this.A=A;
+		this.heapsize=A.length;
+	}
+	private void heapsort1() {
+		buildheap(A);
+		for(int i=A.length-1;i>0;i++) {
+			int tmp=A[i];
+			A[i]=A[0];
+			A[0]=tmp;
+			heapsize--;
+			maxheap(A,0);
+		}
+	}
+	private void buildheap(int[] A) {
+		for(int i=A.length/2-1;i>=0;i--) {
+			maxheap(A,i);
+		}
+	}
+	private void maxheap(int[] A,int i) {
+		int l=2*(i+1)-1;
+		int r=2*(i+1);
+		int largest;
+		if(l<=heapsize-1 && A[l]>A[i]) {
+			largest=l;
+		}else largest=i;
+		if(r<=heapsize-1 && A[r]>A[largest]) {
+			largest=r;
+		}
+		if(largest!=i) {
+			int tmp=A[i];
+			A[i]=A[largest];
+			A[largest]=tmp;
+			maxheap(A,largest);
+		}
+	}
+	public static void main(String[] args) {
+		int[] A = {5,1,8,7,6,2,3,4};
+		heapsort hs=new heapsort(A);
+		hs.heapsort1() ;
+		for(int i:A)
+			System.out.print(i+",");
+	}
+}

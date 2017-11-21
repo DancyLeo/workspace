@@ -1,0 +1,36 @@
+package algorithm.search;
+
+public class demo {
+	private int[] A;
+	private int maxsum;
+	private static int left;
+	private static int right;
+	
+	public demo(int[] A) {
+		this.A=A;
+	}
+	public int maxSubSum() {
+		int sum=0;
+		for(int i=0;i<A.length;i++) {
+			if(sum>0) {
+				sum+=A[i];
+				right++;
+			}else {
+				sum=A[i];
+				left=right=i;
+			}
+			if(sum>maxsum)
+				maxsum=sum;
+		}
+		return maxsum;
+	}
+	
+	public static void main(String[] args) {
+		int[] A= {2,-4,3,2,5,-7,9,10,-2};
+		MaxSubSum d=new MaxSubSum(A);
+		int max=d.maxSubSum();
+		System.out.println(max);
+		for(int i=left;i<=right;i++)
+			System.out.print(","+A[i]);
+	} 
+}

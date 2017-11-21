@@ -1,0 +1,46 @@
+package demo;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
+
+public class Browser {
+	
+	public static void main(String[] args) throws Exception {
+		
+		WebDriver driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		try {
+		driver.navigate().to("http://www.baidu.com");
+		driver.findElement(By.id("kw")).sendKeys("java");
+		driver.findElement(By.id("su")).click();
+		
+		List<WebElement> alist=driver.findElements(By.tagName("a"));
+		Thread.sleep(2000);
+		for(WebElement e:alist) {
+			String str=e.getText();
+			System.out.println(str);
+			/*
+			Thread.sleep(1000);
+			if(e.getText().matches(".*百度百科.*"))
+				System.out.println(e.getText());
+				*/
+
+		}
+		Thread.sleep(2000);
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		finally {
+		  driver.close();
+		}
+	}
+}

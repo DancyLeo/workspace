@@ -1,0 +1,46 @@
+package datastruct;
+
+public class Queue {
+	private int[] Q;
+	private int head;
+	private int tail;
+	private int count=0;
+	public Queue(int capacity) {
+		this.Q=new int[capacity];
+		this.head=0;
+		this.tail=0;
+	}
+	
+	public boolean enQueue(int key) {
+			if(count==Q.length) {
+				System.out.print("full");
+				return false;
+			}else {
+				Q[tail]=key;
+				if(tail==Q.length-1)
+					tail=0;
+				else 
+					tail=tail+1;
+			}
+		count++;
+		return true;
+		}
+	public boolean deQueue() {
+		if(head==tail) {
+			if(head-1==tail)
+				System.out.println("Queue empty");
+		}
+		int key=Q[head];
+		if(head==Q.length-1)
+			head=0;
+		else
+			head=head+1;
+		count--;
+		return true;
+	}
+	public static void main(String[] args) {
+		Queue q=new Queue(5);
+		q.enQueue(3);
+		q.enQueue(13);
+	}
+}

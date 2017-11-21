@@ -1,0 +1,16 @@
+package datastruct;
+
+public class Node {
+	int data;
+	Node pre;
+	Node next;
+	
+	public Node() {};
+	
+	public Node(int data) {
+		this.data=data;
+	}
+	public void display() {
+		System.out.print(data);
+	}
+}

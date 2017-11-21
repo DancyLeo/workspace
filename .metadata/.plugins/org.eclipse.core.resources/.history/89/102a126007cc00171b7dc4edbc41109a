@@ -1,0 +1,27 @@
+package datastruct;
+
+public class LinkList {
+	
+	private  Node head;
+	private  Node tail;
+	//private  int key;
+	
+	public LinkList() {};
+	
+	public static void insert(LinkList L,int key) {
+		Node node=new Node(key);
+		if(L.head==null) {
+			L.head=node;
+			L.tail=node;
+		}else {
+			L.tail.next=node;
+			node.pre=L.tail;
+			L.tail=node;
+		}
+	}
+	public static void main(String[] args) {
+		LinkList L=new LinkList();
+		LinkList.insert(L, 3);
+		L.head.display();
+	}
+}

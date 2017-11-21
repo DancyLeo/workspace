@@ -1,0 +1,50 @@
+package webtest.selenium;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class GetLinks{
+	
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "/Users/leo/app/driver/chromedriver");
+		WebDriver driver=new ChromeDriver();
+		driver.get("http://www.baiwang.com");
+		
+		List<WebElement> elementList=driver.findElements(By.tagName("a"));//获取所有标签a的元素集合
+		List<Links> linksList=new ArrayList<Links>();//创建集合元素类型为Links的ArrayList
+		for(WebElement o:elementList) {//遍历a集合
+			Links ls=new Links();
+			if(o.getAttribute("href")!=null) {//如果标签元素a有超链接
+				ls.setLink(o.getAttribute("href"));//获取超链接地址
+				ls.setLinktxt(o.getText());//获取超链接文本
+				linksList.add(ls);//加入超链接对象集合
+			}	
+		}
+		//对超链接集合，按照超链接地址排序
+		Collections.sort(linksList,new linkComparator());
+		for(Links o:linksList) {//遍历输出排序后对集合对象
+			System.out.println(o.toString());
+		}
+		try {
+		Thread.sleep(2000);
+		}catch(Exception e) {
+			
+		}finally {
+			driver.close();	
+		}
+	}
+	class linkComparator implements Comparator{
+		public int compare(Object o1,Object o2) {
+			 Links l1=(Links)o1;
+			 Links l2=(Links)o2;
+			 return l1.getLink().compareTo(l2.getLink());
+		}
+	}
+}
